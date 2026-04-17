@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Durga Lead Intelligence — Private Admin</title>
+<title>Durga Lead Intelligence — Admin</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
   :root {
@@ -111,6 +111,8 @@
   .content-body p{margin-bottom:10px}
   .content-body a{color:var(--teal);text-decoration:underline;text-decoration-color:rgba(0,191,165,.3)}
   .content-body a:hover{text-decoration-color:var(--teal)}
+  .clean-list{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px}
+  .clean-list li{line-height:1.65}
   .content-body table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
   .content-body th{background:var(--surface3);color:var(--gold);padding:9px 12px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;border:1px solid var(--border)}
   .content-body td{padding:8px 12px;border:1px solid var(--border);color:var(--text);vertical-align:top}
@@ -143,28 +145,6 @@
     .stat-item{min-width:50%}
     .content-body{padding:18px 16px}
   }
-
-  /* PRIVATE ADMIN CONTROLS */
-  .private-panel{background:linear-gradient(135deg,rgba(0,191,165,.06),rgba(124,58,237,.05));border:1px solid var(--border2);border-radius:16px;padding:18px 20px;margin-bottom:28px}
-  .private-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-  .private-panel-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--text)}
-  .private-panel-sub{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5}
-  .private-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
-  .field{grid-column:span 6;display:flex;flex-direction:column;gap:6px}
-  .field.small{grid-column:span 3}
-  .field.wide{grid-column:span 12}
-  .field label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold)}
-  .mini-input,.mini-select{background:var(--surface);border:1px solid var(--border2);color:var(--text);padding:11px 12px;border-radius:10px;font-size:13px;outline:none}
-  .mini-input:focus,.mini-select:focus{border-color:var(--teal)}
-  .check-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:10px 0 2px}
-  .check-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text)}
-  .check-item input{accent-color:var(--teal)}
-  .private-actions{display:flex;gap:10px;flex-wrap:wrap}
-  .ghost-btn{background:transparent;border:1px solid var(--border2);color:var(--text);padding:9px 14px;border-radius:10px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;cursor:pointer}
-  .ghost-btn:hover{border-color:var(--teal);color:var(--teal)}
-  .tiny-note{font-size:12px;color:var(--muted);line-height:1.5;margin-top:6px}
-  .json-pill{display:inline-block;padding:3px 8px;border:1px solid var(--border2);border-radius:999px;font-size:10px;font-family:'DM Mono',monospace;color:var(--teal);letter-spacing:1px}
-
 </style>
 </head>
 <body>
@@ -174,10 +154,10 @@
     <div class="logo-icon">🧠</div>
     <div class="logo-text">
       <div class="main">DURGA LEAD INTELLIGENCE</div>
-      <div class="sub">Private Lead Console · Exact public contacts only</div>
+      <div class="sub">Psychiatric Centre · MindSkill · SoftSkills Academy</div>
     </div>
   </div>
-  <div class="admin-badge">🔒 PRIVATE ADMIN</div>
+  <div class="admin-badge">⚡ ADMIN ONLY</div>
 </header>
 
 <div class="main-wrap">
@@ -186,67 +166,20 @@
   <div class="free-banner">
     <div class="free-badge">🆓 100% FREE AI</div>
     <div class="free-info">
-      Use your own private endpoint &mdash; No shared prompt logs &bull; Exact public contacts only &bull; Structured output
+      Powered by <strong>Pollinations.ai</strong> &mdash; No API key &bull; No signup &bull; No cost ever &bull; Works instantly in browser
     </div>
     <div class="model-wrap">
-      <label>ENGINE:</label>
+      <label>MODEL:</label>
       <select class="model-select" id="modelSelect">
-        <option value="private-gpt">Private GPT Backend</option>
-        <option value="ollama">Local Model / Ollama</option>
-        <option value="openai">OpenAI via Your Backend</option>
-        <option value="llama">Llama / Local</option>
-        <option value="deepseek">DeepSeek / Custom</option>
+        <option value="openai">OpenAI GPT-4o (Best)</option>
+        <option value="openai-large">GPT-4o Large (Deep)</option>
+        <option value="mistral">Mistral (Fast)</option>
+        <option value="llama">Llama (Open Source)</option>
+        <option value="deepseek">DeepSeek (Detailed)</option>
       </select>
     </div>
     <div class="ai-live"><div class="ai-dot"></div>AI ONLINE</div>
   </div>
-
-
-  <div class="private-panel">
-    <div class="private-panel-head">
-      <div>
-        <div class="private-panel-title">Private GPT controls</div>
-        <div class="private-panel-sub">Connect your own backend. The prompt forces exact public contact details only, with no guessing and no generic filler.</div>
-      </div>
-      <div class="private-actions">
-        <button class="ghost-btn" onclick="savePrivateSettings()">💾 Save</button>
-        <button class="ghost-btn" onclick="resetPrivateSettings()">↩ Reset</button>
-      </div>
-    </div>
-
-    <div class="private-grid">
-      <div class="field wide">
-        <label>Private endpoint URL</label>
-        <input id="apiEndpoint" class="mini-input" placeholder="/api/private-gpt or https://your-domain/api/private-gpt" />
-        <div class="tiny-note">Recommended: a server-side endpoint you control. That keeps keys private and allows search-backed public contact retrieval.</div>
-      </div>
-
-      <div class="field">
-        <label>API key / token</label>
-        <input id="apiKey" class="mini-input" type="password" placeholder="Optional" />
-      </div>
-
-      <div class="field">
-        <label>Response format</label>
-        <select id="responseFormat" class="mini-select">
-          <option value="json">JSON table output</option>
-          <option value="markdown">Markdown output</option>
-        </select>
-      </div>
-
-      <div class="field wide">
-        <label>Output filters</label>
-        <div class="check-row">
-          <label class="check-item"><input type="checkbox" id="strictOnly" checked /> Exact public contact details only</label>
-          <label class="check-item"><input type="checkbox" id="noGuessing" checked /> Do not guess / fabricate / infer private data</label>
-          <label class="check-item"><input type="checkbox" id="includeSources" checked /> Include source URLs</label>
-          <label class="check-item"><input type="checkbox" id="compactMode" checked /> Compact admin view</label>
-        </div>
-        <div class="tiny-note"><span class="json-pill">BEST</span> JSON mode renders results as a clean table instead of long paragraphs.</div>
-      </div>
-    </div>
-  </div>
-
 
   <div class="section-title">🎯 AI Lead Discovery Engine</div>
   <div class="section-sub">Select a target audience — Free AI instantly generates leads, contacts &amp; outreach strategies</div>
@@ -340,8 +273,8 @@
   <!-- LOADER -->
   <div class="loader-wrap" id="loader">
     <div class="loader-ring"></div>
-    <div class="loader-text">PRIVATE BACKEND QUERY...</div>
-    <div class="loader-sub">Using your private endpoint · Please wait for response</div>
+    <div class="loader-text">AI SCANNING FOR LEADS...</div>
+    <div class="loader-sub">Using free Pollinations.ai · Please wait 15–40 seconds</div>
   </div>
 
   <!-- RESULTS -->
@@ -374,93 +307,79 @@
 
 <script>
 /* ── STATE ── */
-const SETTINGS_KEY='dpc_private_settings_v1';
 let selectedCat=null, selectedLoc='Chennai, T Nagar';
 let searchHistory=JSON.parse(localStorage.getItem('dpc_history')||'[]');
 let lastResultText='';
 
-window.addEventListener('DOMContentLoaded',()=>{
-  loadPrivateSettings();
-  renderHistory();
-});
+window.addEventListener('DOMContentLoaded',()=>renderHistory());
 
 /* ── CATEGORY / LOCATION ── */
 function selectCat(el){
   document.querySelectorAll('.cat-card').forEach(c=>c.classList.remove('active'));
   el.classList.add('active');
   selectedCat=el.dataset.cat;
-  document.getElementById('customQuery').placeholder=`Search leads for: ${el.querySelector('.cat-name').textContent} in ${selectedLoc}...`;
+  const q=document.getElementById('customQuery');
+  q.value='';
+  q.placeholder=`Search leads for: ${el.querySelector('.cat-name').textContent} in ${selectedLoc}...`;
+  hideResults();
+  hideError();
 }
 function selectLoc(el,loc){
   document.querySelectorAll('.loc-btn').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active'); selectedLoc=loc;
+  el.classList.add('active');
+  selectedLoc=loc;
+  const q=document.getElementById('customQuery');
+  if(q && !q.value.trim()){
+    q.placeholder=`Search leads for: ${document.querySelector('.cat-card.active .cat-name')?.textContent || 'selected category'} in ${selectedLoc}...`;
+  }
+  hideResults();
 }
 
 /* ── BUILD PROMPT ── */
 function buildPrompt(cat,loc,custom){
   const map={
-    'psychologist-individual':`Find individuals and communities in ${loc} actively seeking mental health counseling, psychologist sessions, or therapy. Use only public sources. Return exact public contact details, website, contact page, email, phone, social links, and source URLs. Do not include private or guessed data.`,
-    'psychologist-workshop':`Find people, institutions, and online communities in ${loc} looking for psychology workshops, mental health courses, or counseling certifications. Use only public sources. Return exact public contact details, website, contact page, email, phone, social links, and source URLs. Do not include private or guessed data.`,
-    'softskills-workshop':`Find students, job seekers, working professionals, and institutions in ${loc} looking for soft skills training, communication workshops, personality development, or career coaching. Use only public sources. Return exact public contact details, website, contact page, email, phone, social links, and source URLs. Do not include private or guessed data.`,
-    'schools-colleges':`List schools, colleges, and universities in ${loc} that would benefit from mental health workshops and soft skills training. Use only public sources. Return exact public contact details for the institution, department, website, contact page, email, phone, and source URLs. Do not include private or guessed data.`,
-    'corporate-it':`List IT companies, BPOs, and corporate organizations in ${loc} open to Employee Assistance Programs (EAP), mental wellness workshops, and soft skills training. Use only public sources. Return exact public contact details, HR/public contact page, website, email, phone, and source URLs. Do not include private or guessed data.`,
-    'hospitals-clinics':`List hospitals, multi-specialty clinics, maternity hospitals, IVF centers, and wellness clinics in ${loc} ideal for referral partnerships. Use only public sources. Return exact public contact details, department contacts if public, website, email, phone, and source URLs. Do not include private or guessed data.`,
-    'nri-global':`Find NRI Tamil communities in UAE, UK, USA, Canada, Singapore, and Malaysia. Use only public sources. Return exact public contact details, website, public community pages, email, phone, and source URLs. Do not include private or guessed data.`,
-    'gyms-wellness':`List gyms, yoga centers, wellness studios, spa centers, and holistic health centers in ${loc}. Use only public sources. Return exact public contact details, website, contact page, email, phone, social links, and source URLs. Do not include private or guessed data.`,
-    'ngos-community':`List NGOs, women's organizations, youth groups, self-help groups, and community organizations in ${loc}. Use only public sources. Return exact public contact details, website, contact page, email, phone, and source URLs. Do not include private or guessed data.`,
-    'perinatal':`Find gynecology clinics, maternity hospitals, IVF centers, mother-baby groups, and pregnancy support communities in ${loc}. Use only public sources. Return exact public contact details, website, contact page, email, phone, social links, and source URLs. Do not include private or guessed data.`,
-    'nursing-colleges':`List nursing colleges, caregiver training institutes, medical colleges, and paramedical institutes in ${loc}. Use only public sources. Return exact public contact details, website, contact page, email, phone, and source URLs. Do not include private or guessed data.`,
-    'social-media-leads':`Give a detailed guide of public Facebook groups, LinkedIn groups, Instagram hashtags, Reddit communities, and YouTube search terms in India for mental health counseling, soft skills training, or psychology courses. Return only public names, URLs, and exact contact details if public. Do not include private or guessed data.`,
+    'psychologist-individual':`Find individuals and communities in ${loc} actively seeking mental health counseling, psychologist sessions, or therapy. Include online forums, Facebook groups, Reddit communities, WhatsApp communities, apps, and directories. Give specific platform names, group names, keywords to search.`,
+    'psychologist-workshop':`Find people, institutions, and online communities in ${loc} looking for psychology workshops, mental health courses, or counseling certifications. Include LinkedIn groups, Facebook groups, educational forums, professional associations. Give platform names, group names, directory links.`,
+    'softskills-workshop':`Find students, job seekers, working professionals, and institutions in ${loc} looking for soft skills training, communication workshops, personality development, or career coaching. Include placement cell contacts, LinkedIn groups, job portals, student forums.`,
+    'schools-colleges':`List top schools, colleges, and universities in ${loc} that would benefit from mental health workshops and soft skills training. Provide institution name, likely contact department, official website, best outreach method. List 15-20 institutions.`,
+    'corporate-it':`List top IT companies, BPOs, and corporate organizations in ${loc} open to Employee Assistance Programs (EAP), mental wellness workshops, and soft skills training. Include company names, LinkedIn HR contact approach, outreach strategy.`,
+    'hospitals-clinics':`List hospitals, multi-specialty clinics, maternity hospitals, IVF centers, and wellness clinics in ${loc} that would be ideal referral partners for a psychiatric counseling center. Include hospital names, target departments, contact approach, referral partnership strategy.`,
+    'nri-global':`Find NRI Tamil communities in UAE, UK, USA, Canada, Singapore, Malaysia who need online mental health counseling, psychology courses, or soft skills certification. Include Tamil association websites, Facebook groups, WhatsApp community names, outreach strategies per country.`,
+    'gyms-wellness':`List gyms, yoga centers, wellness studios, spa centers, and holistic health centers in ${loc} ideal for mind-body wellness program partnerships. Include business names, Instagram/Facebook search strategy, partnership pitch ideas.`,
+    'ngos-community':`List NGOs, women's organizations, youth groups, self-help groups, and community organizations in ${loc} that benefit from mental health awareness programs, counseling referrals, or soft skills workshops. Include org names, contact approach, specific programs to offer.`,
+    'perinatal':`Find gynecology clinics, maternity hospitals, IVF centers, mother-baby groups, and pregnancy support communities in ${loc} to partner with for perinatal mental health counseling. Include clinic names, Facebook/WhatsApp mother groups, medical directories.`,
+    'nursing-colleges':`List nursing colleges, caregiver training institutes, medical colleges, and paramedical institutes in ${loc} that would hire a psychiatrist/counselor for workshops. Include institution names, faculty contact approach, course integration opportunities.`,
+    'social-media-leads':`Give a detailed guide of specific Facebook groups, LinkedIn groups, Instagram hashtags, Reddit communities, YouTube search terms, WhatsApp communities in India for mental health counseling, soft skills training, or psychology courses. Include exact group names, hashtags, ethical engagement strategies.`,
   };
   const task=custom&&custom.trim()?custom:(map[cat]||custom);
-  return `You are a private lead intelligence assistant for Durga Psychiatric Centre, Durga MindSkill Care Centre, and Durga SoftSkills Academy in Chennai.
+  return `You are an expert B2B and B2C lead generation consultant for Durga Psychiatric Centre, Durga MindSkill Care Centre, and Durga SoftSkills Academy — based in T Nagar, Chennai. Founder D. Durga holds: DPN, DAHM, BBA, MBA HR, MSW (Medical & Psychiatry). Services: in-person and online counseling, psychology workshops, certificate courses, soft skills training.
 
-Hard rules:
-- Use only public information.
-- Never guess, infer, or invent contact details.
-- Never include private personal data.
-- If a detail is unavailable, write "NOT FOUND".
-- Prefer official websites, contact pages, Google Business pages, and public social pages.
-- Return structured output only.
+TASK: ${task}
 
-Context:
-Founder: D. Durga
-Services: counseling, psychology workshops, certificate courses, soft skills training
-Location: Chennai / Tamil Nadu / India / NRI Tamil communities
+Provide a HIGHLY ACTIONABLE lead generation report:
 
-Task:
-${task}
+## 🎯 TOP PRIORITY TARGETS
+List the most promising specific targets with names, category, and why they are ideal.
 
-Return one of these formats depending on responseFormat:
-1) JSON:
-{
-  "category": "",
-  "location": "",
-  "results": [
-    {
-      "name": "",
-      "type": "",
-      "public_contact_person": "",
-      "role": "",
-      "email": "",
-      "phone": "",
-      "website": "",
-      "contact_page": "",
-      "social_links": [""],
-      "source_urls": [""],
-      "notes": ""
-    }
-  ]
+## 📋 DIRECTORY & PLATFORM SOURCES
+Specific websites, directories, portals, apps, and online platforms with actual URLs or platform names.
+
+## 📧 HOW TO CONTACT THEM
+Email approach, WhatsApp strategy, LinkedIn outreach, phone call script opener for each category.
+
+## 💬 OUTREACH MESSAGE TEMPLATES
+2–3 ready-to-use WhatsApp/Email templates personalized for Durga Psychiatric Centre.
+
+## 🔍 SEARCH KEYWORDS TO USE
+Exact keywords for Google, Facebook, LinkedIn, and Instagram.
+
+## 🏆 QUICK WIN (This Week)
+The single fastest action to get 5 leads this week.
+
+Use tables where useful. Be specific to Chennai / Tamil Nadu. Return only website URLs, one URL per line. No numbering, no headings, no explanations, no JSON, no extra text.`;
 }
 
-2) Markdown:
-Use a clean table with columns: Name | Type | Public contact | Email | Phone | Website | Source
-No filler paragraphs. No generic advice. No marketing copy.`;
-}
-
-
-
-/* ── MAIN SEARCH — PRIVATE ENDPOINT ── */
+/* ── MAIN SEARCH — POLLINATIONS.AI (FREE, NO KEY) ── */
 async function runSearch(){
   const custom=document.getElementById('customQuery').value.trim();
   if(!selectedCat&&!custom){showError('Please select a category or enter a custom query.');return;}
@@ -468,184 +387,121 @@ async function runSearch(){
   hideError(); showLoader(true); hideResults();
 
   const label=custom||(selectedCat?document.querySelector('.cat-card.active .cat-name')?.textContent:'Search');
+  const model=document.getElementById('modelSelect').value;
   const prompt=buildPrompt(selectedCat,selectedLoc,custom);
-  const endpoint=getSetting('apiEndpoint');
-  const apiKey=getSetting('apiKey');
-  const responseFormat=getSetting('responseFormat')||'json';
-  const strictOnly=getSetting('strictOnly',true);
-  const noGuessing=getSetting('noGuessing',true);
-  const includeSources=getSetting('includeSources',true);
-  const compactMode=getSetting('compactMode',true);
-
-  if(!endpoint){
-    showError('Set your private endpoint URL first.');
-    showLoader(false);
-    return;
-  }
 
   try {
-    const payload={
-      prompt,
-      label,
-      category:selectedCat,
-      location:selectedLoc,
-      responseFormat,
-      strictOnly,
-      noGuessing,
-      includeSources,
-      compactMode
-    };
-
-    const headers={'Content-Type':'application/json'};
-    if(apiKey) headers['Authorization']=`Bearer ${apiKey}`;
-
-    const res = await fetch(endpoint,{
+    // ─────────────────────────────────────────────────────────────────
+    // POLLINATIONS.AI  |  https://pollinations.ai
+    // 100% FREE · No API key · No account · No rate limit (fair use)
+    // ─────────────────────────────────────────────────────────────────
+    const res = await fetch('https://text.pollinations.ai/',{
       method:'POST',
-      headers,
-      body:JSON.stringify(payload)
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        messages:[
+          {role:'system',content:'You are an expert lead generation consultant for mental health and soft skills services in India. Return only one-line list items. No headings. No tables. No bullets. No JSON. Be highly specific and actionable, focused on Chennai/Tamil Nadu context.'},
+          {role:'user',content:prompt}
+        ],
+        model:model,
+        seed:Math.floor(Math.random()*9999),
+        private:false
+      })
     });
 
-    if(!res.ok) throw new Error(`Service error ${res.status} — check your private endpoint`);
+    if(!res.ok) throw new Error(`Service error ${res.status} — try a different model`);
 
     const text=await res.text();
-    if(!text||text.trim().length<10) throw new Error('Empty response — please try again');
+    if(!text||text.trim().length<80) throw new Error('Empty response — please try again or switch model');
 
     lastResultText=text;
-    renderResults(text,label,'private-gpt');
+    renderResults(text,label,model);
     addToHistory(label);
 
   } catch(err) {
-    showError(err.message||'Connection error. Check your endpoint and try again.');
+    // Auto-fallback to Mistral if primary model fails
+    if(model!=='mistral'){
+      showError('Switching to Mistral fallback...');
+      document.getElementById('modelSelect').value='mistral';
+      await new Promise(r=>setTimeout(r,1500));
+      return runSearch();
+    }
+    showError(err.message||'Connection error. Check your internet and try again.');
   } finally {
     showLoader(false);
   }
 }
 
-/* ── RENDER ── *//* ── RENDER ── */
+/* ── RENDER ── */
+
 function renderResults(text,label,model){
   document.getElementById('resultCatLabel').textContent=label;
-  document.getElementById('modelTag').textContent=`Private backend · ${getSetting('responseFormat')||'json'} · Admin mode`;
+  const names={openai:'GPT-4o','openai-large':'GPT-4o Large',mistral:'Mistral',llama:'Llama',deepseek:'DeepSeek'};
+  document.getElementById('modelTag').textContent=`${names[model]||model} via Pollinations.ai · URL LIST`;
 
-  let html='';
-  const parsed=tryParseJSON(text);
-  if(parsed && Array.isArray(parsed.results)){
-    html=renderJsonResults(parsed);
-  } else {
-    html=markdownToHtml(text);
-  }
-
+  const urls = extractUrls(text);
+  const html = urls.length
+    ? `<ol class="clean-list">${urls.map(u=>`<li><a href="${escapeHtml(u)}" target="_blank" rel="noopener">${escapeHtml(u)}</a></li>`).join('')}</ol>`
+    : `<p>No website links found in the response.</p>`;
   document.getElementById('resultContent').innerHTML=html;
 
-  const sections=(text.match(/^## /gm)||[]).length;
-  const bullets=(text.match(/^- /gm)||[]).length;
-  const targets=(text.match(/results|source|contact|email|phone/gi)||[]).length;
-  document.getElementById('s1').textContent=Math.max(sections,4);
-  document.getElementById('s2').textContent=Math.min(bullets,12);
-  document.getElementById('s3').textContent=Math.max(targets,5);
-  document.getElementById('s4').textContent='JSON';
+  document.getElementById('s1').textContent=urls.length || 0;
+  document.getElementById('s2').textContent='URL';
+  document.getElementById('s3').textContent='1';
+  document.getElementById('s4').textContent='LINKS';
   document.getElementById('statsBar').style.display='flex';
   document.getElementById('results-wrap').className='show';
   document.getElementById('results-wrap').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-function tryParseJSON(text){
-  try{return JSON.parse(text)}catch(e){return null}
+function extractUrls(text){
+  const raw = String(text || '')
+    .replace(/\r\n/g, '\n')
+    .replace(/\\n/g, '\n')
+    .replace(/\\t/g, ' ')
+    .replace(/\\r/g, '\n')
+    .replace(/^```(?:json|markdown|text)?\s*/i, '')
+    .replace(/\s*```$/i, '')
+    .trim();
+
+  const matches = raw.match(/https?:\/\/[^\s"'<>\)\]]+/gi) || [];
+  const cleaned = matches
+    .map(u => u.replace(/[),.;]+$/g, ''))
+    .filter((u, i, arr) => arr.indexOf(u) === i);
+
+  if (cleaned.length) return cleaned;
+
+  return raw
+    .split('\n')
+    .map(line => line.match(/https?:\/\/[^\s"'<>\)\]]+/i))
+    .flat()
+    .filter(Boolean)
+    .map(u => u.replace(/[),.;]+$/g, ''))
+    .filter((u, i, arr) => arr.indexOf(u) === i);
+}
+function cleanLine(s){
+  return String(s || '')
+    .replace(/\\\"/g, '"')
+    .replace(/\\'/g, "'")
+    .replace(/\\"/g, '"')
+    .replace(/^["'\s]+|["'\s]+$/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function escapeHtml(s=''){
   return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 }
 
-function markdownToHtml(text){
-  let html=text
-    .replace(/^## (.+)$/gm,'<h2>$1</h2>')
-    .replace(/^### (.+)$/gm,'<h3>$1</h3>')
-    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g,'<em>$1</em>')
-    .replace(/`(.+?)`/g,"<code style=\"background:var(--surface3);padding:1px 5px;border-radius:3px;font-family:\'DM Mono\',monospace;font-size:12px;color:var(--teal)\">$1</code>")
-    .replace(/^-\s(.+)$/gm,'<li>$1</li>')
-    .replace(/(<li>.*<\/li>\n?)+/g,m=>`<ul>${m}</ul>`)
-    .replace(/^\d+\.\s(.+)$/gm,'<li>$1</li>')
-    .replace(/\n{2,}/g,'</p><p>')
-    .replace(/\n/g,'<br/>');
-  if(!html.startsWith('<')) html='<p>'+html+'</p>';
-  return html;
-}
-
-function renderJsonResults(data){
-  const rows=data.results||[];
-  const headers=['Name','Type','Public contact','Email','Phone','Website','Source'];
-  const bodyRows=rows.map(row=>{
-    const source = Array.isArray(row.source_urls) ? row.source_urls[0] : (row.source_urls || row.source_url || 'NOT FOUND');
-    return `<tr>
-      <td>${escapeHtml(row.name||'NOT FOUND')}</td>
-      <td>${escapeHtml(row.type||'NOT FOUND')}</td>
-      <td>${escapeHtml(row.public_contact_person || row.role || 'NOT FOUND')}</td>
-      <td>${escapeHtml(row.email||'NOT FOUND')}</td>
-      <td>${escapeHtml(row.phone||'NOT FOUND')}</td>
-      <td>${row.website ? `<a href="${escapeHtml(row.website)}" target="_blank" rel="noopener">${escapeHtml(row.website)}</a>` : 'NOT FOUND'}</td>
-      <td>${source && source !== 'NOT FOUND' ? `<a href="${escapeHtml(source)}" target="_blank" rel="noopener">Source</a>` : 'NOT FOUND'}</td>
-    </tr>`;
-  }).join('');
-  return `
-    <h2>Exact Public Contact Details</h2>
-    <table>
-      <thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
-      <tbody>${bodyRows || `<tr><td colspan="7">NOT FOUND</td></tr>`}</tbody>
-    </table>
-    ${data.notes ? `<h3>Notes</h3><p>${escapeHtml(data.notes)}</p>` : ''}
-  `;
-}
 
 /* ── EXPORT ── */
-
-/* ── EXPORT ── *//* ── EXPORT ── */
 function exportResults(){
   if(!lastResultText)return;
-  const blob=new Blob([lastResultText],{type:'text/plain'});
+  const blob=new Blob([extractUrls(lastResultText).join('\n') || lastResultText],{type:'text/plain'});
   const a=document.createElement('a');
   a.href=URL.createObjectURL(blob);
   a.download=`Durga_Leads_${Date.now()}.txt`;
   a.click();
-}
-
-
-function loadPrivateSettings(){
-  const saved=JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}');
-  document.getElementById('apiEndpoint').value=saved.apiEndpoint||'/api/private-gpt';
-  document.getElementById('apiKey').value=saved.apiKey||'';
-  document.getElementById('responseFormat').value=saved.responseFormat||'json';
-  document.getElementById('strictOnly').checked=saved.strictOnly!==false;
-  document.getElementById('noGuessing').checked=saved.noGuessing!==false;
-  document.getElementById('includeSources').checked=saved.includeSources!==false;
-  document.getElementById('compactMode').checked=saved.compactMode!==false;
-}
-
-function savePrivateSettings(){
-  const payload={
-    apiEndpoint:document.getElementById('apiEndpoint').value.trim(),
-    apiKey:document.getElementById('apiKey').value.trim(),
-    responseFormat:document.getElementById('responseFormat').value,
-    strictOnly:document.getElementById('strictOnly').checked,
-    noGuessing:document.getElementById('noGuessing').checked,
-    includeSources:document.getElementById('includeSources').checked,
-    compactMode:document.getElementById('compactMode').checked
-  };
-  localStorage.setItem(SETTINGS_KEY,JSON.stringify(payload));
-  showError('Private settings saved.');
-}
-
-function resetPrivateSettings(){
-  localStorage.removeItem(SETTINGS_KEY);
-  loadPrivateSettings();
-  showError('Private settings reset.');
-}
-
-function getSetting(key, fallback=''){
-  const el=document.getElementById(key);
-  if(!el) return fallback;
-  if(el.type==='checkbox') return el.checked;
-  return el.value.trim() || fallback;
 }
 
 /* ── HISTORY ── */
